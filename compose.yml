@@ -1,7 +1,9 @@
 services:
   backend:
     container_name: ${BACKEND_CONTAINER_NAME}
-    build: ./backend
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile.dev
     depends_on:
       - db
     volumes:
