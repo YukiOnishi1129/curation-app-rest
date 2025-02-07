@@ -1,3 +1,5 @@
+include .env.local
+
 empty:
 	echo "empty"
 
@@ -15,10 +17,10 @@ create-migration:
 	migrate create -ext sql -dir internal/config/database/migrations -seq $(name)
 
 migration-up:
-	migrate -path internal/config/database/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" up
+	migrate -path internal/config/database/migrations -database "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@localhost:$(POSTGRES_PORT)/$(POSTGRES_DB)?sslmode=disable" up
 
 migration-rollback:
-	migrate -path internal/config/database/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" down
+	migrate -path internal/config/database/migrations -database "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@localhost:$(POSTGRES_PORT)/$(POSTGRES_DB)?sslmode=disable" down
 
 gen-sqlc:
 	sqlc generate
