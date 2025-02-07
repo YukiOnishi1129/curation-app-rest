@@ -19,3 +19,6 @@ migration-up:
 
 migration-rollback:
 	migrate -path internal/config/database/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" down
+
+gen-sqlc:
+	sqlc generate
