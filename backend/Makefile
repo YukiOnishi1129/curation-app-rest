@@ -12,10 +12,10 @@ test-single:
 	go test -v -run ${name} ./...
 
 create-migration:
-	migrate create -ext sql -dir db/migrations -seq $(name)
+	migrate create -ext sql -dir internal/config/database/migrations -seq $(name)
 
 migration-up:
-	migrate -path db/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" up
+	migrate -path internal/config/database/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" up
 
 migration-rollback:
-	migrate -path db/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" down
+	migrate -path internal/config/database/migrations -database "postgres://user:pass@localhost:5432/CURATION_APP_REST_DB?sslmode=disable" down
